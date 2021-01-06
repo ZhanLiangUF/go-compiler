@@ -4,37 +4,7 @@ import (
 	"fmt"
 	"log"
 	"strconv"
-	"strings"
 )
-
-type Num struct {
-	Val  int
-	Type string
-	expr []Exp
-}
-
-type Exp struct {
-	Type string
-	Val  int
-}
-
-type Node struct {
-	Type string
-	Val  int
-	Exp  []Num
-}
-
-func lex(s string) []string {
-	entries := strings.Split(s, " ")
-	lex := make([]string, 0)
-	for _, e := range entries {
-		eTrim := strings.Trim(e, " ")
-		if len(eTrim) > 0 {
-			lex = append(lex, eTrim)
-		}
-	}
-	return lex
-}
 
 func parse(t []string) {
 	var c *int
