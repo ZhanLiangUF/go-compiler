@@ -11,12 +11,7 @@ func parse(t []string) {
 	c = new(int)
 	*c = 0
 
-	parseNum := parseNum(t, c)
-	parseOp := parseOp(t, c)
-
-	fmt.Println(parseNum)
-	fmt.Println(parseOp)
-
+	return parseExp(t, c)
 }
 
 func parseNum(t []string, c *int) *Num {
@@ -38,16 +33,21 @@ func parseOp(t []string, c *int) *Node {
 	_, err := peek(t, c)
 
 	for err == nil {
-		// if num then parseExpr
+		node.Exp.add(parseExp(t, c))
 	}
 	fmt.Println(err)
 	return node
 }
 
-func isNum(t []string, c *int) bool {
+func parseExp(t []string, c *int) (*Num, *Node) {
 	num, _ := peek(t, c)
 	match, _ := regexp.MatchString(`\d`, num)
-	return match
+	if match {
+		return parseNum(t, c), nil
+	} else {
+		return nil, parseOp(t, c)
+	}
+
 }
 
 // *int means pointer to an int value
