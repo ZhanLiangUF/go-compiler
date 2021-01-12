@@ -11,7 +11,9 @@ func parse(t []string) {
 	c = new(int)
 	*c = 0
 
-	return parseExp(t, c)
+	a, b := parseExp(t, c)
+	fmt.Println(a)
+	fmt.Println(b)
 }
 
 func parseNum(t []string, c *int) *Num {
@@ -26,14 +28,21 @@ func parseOp(t []string, c *int) *Node {
 	var node *Node
 	node = new(Node)
 
+	var exp []interface{}
+
 	node.Val = consume(t, c)
 	node.Type = "Op"
-	node.Exp = []Num{}
+	node.Exp = exp
 
 	_, err := peek(t, c)
 
 	for err == nil {
-		node.Exp.add(parseExp(t, c))
+		a, b := parseExp(t, c)
+		if a == nil {
+			node.Exp = append(node.Exp, a)
+		} else {
+			node.Exp = append(node.Exp, b)
+		}
 	}
 	fmt.Println(err)
 	return node

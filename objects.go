@@ -8,5 +8,5 @@ type Num struct {
 type Node struct {
 	Type string
 	Val  string
-	Exp  []Num
+	Exp  []interface{}
 }
