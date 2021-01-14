@@ -36,9 +36,8 @@ func parseOp(t []string, c *int) *Node {
 	node.Exp = exp
 
 	// not nesting nodes here because there will never be a time when error is nil
-	_, err := peek(t, c)
 
-	for err == nil {
+	for peekHelper(peek(t, c)) {
 		a, b := parseExp(t, c)
 		if a == nil {
 			node.Exp = append(node.Exp, a)
@@ -46,15 +45,20 @@ func parseOp(t []string, c *int) *Node {
 			node.Exp = append(node.Exp, b)
 		}
 	}
-	fmt.Println(err)
 	return node
+}
+
+// helper function for recursive while loop
+func peekHelper(s string, err error) bool {
+	if err != nil {
+		return false
+	}
+	return true
 }
 
 func parseExp(t []string, c *int) (*Num, *Node) {
 	num, _ := peek(t, c)
-	fmt.Println(num)
 	match, _ := regexp.MatchString(`\d`, num)
-	fmt.Println(match)
 	if match {
 		return parseNum(t, c), nil
 	} else {
