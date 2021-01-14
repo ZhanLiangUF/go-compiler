@@ -35,6 +35,7 @@ func parseOp(t []string, c *int) *Node {
 	node.Type = "Op"
 	node.Exp = exp
 
+	// not nesting nodes here because there will never be a time when error is nil
 	_, err := peek(t, c)
 
 	for err == nil {
