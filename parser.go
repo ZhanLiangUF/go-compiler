@@ -76,6 +76,7 @@ func peek(t []string, c *int) (string, error) {
 }
 
 func consume(t []string, c *int) string {
+	s := t[*c]
 	*c++
-	return t[*c]
+	return s
 }
