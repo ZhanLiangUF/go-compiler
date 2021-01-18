@@ -39,7 +39,7 @@ func parseOp(t []string, c *int) *Node {
 
 	for peekHelper(peek(t, c)) {
 		a, b := parseExp(t, c)
-		if a == nil {
+		if a != nil {
 			node.Exp = append(node.Exp, a)
 		} else {
 			node.Exp = append(node.Exp, b)
