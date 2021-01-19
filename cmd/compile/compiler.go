@@ -5,9 +5,8 @@ import (
 )
 
 func main() {
-	str := "sum sum 2"
+	str := "sum 2 3 4"
 	lex := lex(str)
 	fmt.Println(lex)
 	parse(lex)
-
 }
