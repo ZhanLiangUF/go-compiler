@@ -6,14 +6,13 @@ import (
 	"regexp"
 )
 
-func parse(t []string) (Num, Node) {
+func parse(t []string) (*Num, *Node) {
 	var c *int
 	c = new(int)
 	*c = 0
 
 	a, b := parseExp(t, c)
-	// TO DO: Fix dereferencing while keeping nil
-	return *a, *b
+	return a, b
 }
 
 func parseNum(t []string, c *int) *Num {
