@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 	"strings"
 )
 
@@ -28,15 +27,12 @@ func transpileNode(ast *Node, ast2 *Num) (*Node, *Num) {
 	}
 }
 
-func transpileOp(ast *Node) {
-	// use map and fmtsprintf to interpolate
-	// iterate through num/node
+func transpileOp(ast *Node) string {
 	var arr []string
 	for i, v := range ast.Exp {
 		if ast.Type == "Node" {
 			v := v.(*Node)
 			a, b := transpileNode(v, nil)
-			// append the result
 			// arr = append(arr, transpileNode(v, nil))
 		} else {
 			v := v.(*Num)
@@ -45,10 +41,9 @@ func transpileOp(ast *Node) {
 		}
 	}
 	s := strings.Join(arr, ostMap[ast.Val])
-	fmt.Println(arr)
+	return s
 }
 
-func transpileNum(ast2 *Num) int {
-	i, _ := strconv.Atoi(ast2.Val)
-	return i
+func transpileNum(ast2 *Num) string {
+	return ast2.Val
 }

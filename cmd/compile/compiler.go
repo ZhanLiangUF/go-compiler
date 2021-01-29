@@ -9,4 +9,5 @@ func main() {
 	lex := lex(str)
 	fmt.Println(lex)
 	parse(lex)
+	// use fmf sprintf to interpolate the string after transpile
 }
