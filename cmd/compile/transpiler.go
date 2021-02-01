@@ -13,6 +13,7 @@ var ostMap = map[string]string{
 }
 
 // takes in AST and produce go code
+// TO DO fix function parameters to match parserl
 func transpile(ast *Node, ast2 *Num) {
 	a := transpileNode(ast, ast2)
 	fmt.Println(a)

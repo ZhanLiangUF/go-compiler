@@ -6,7 +6,7 @@ import (
 	"regexp"
 )
 
-func parse(t []string) (*Num, *Node) {
+func parse(t []string) (*Node, *Num) {
 	var c *int
 	c = new(int)
 	*c = 0
@@ -55,13 +55,13 @@ func peekHelper(s string, err error) bool {
 	return true
 }
 
-func parseExp(t []string, c *int) (*Num, *Node) {
+func parseExp(t []string, c *int) (*Node, *Num) {
 	num, _ := peek(t, c)
 	match, _ := regexp.MatchString(`\d`, num)
 	if match {
-		return parseNum(t, c), nil
+		return nil, parseNum(t, c)
 	} else {
-		return nil, parseOp(t, c)
+		return parseOp(t, c), nil
 	}
 
 }
