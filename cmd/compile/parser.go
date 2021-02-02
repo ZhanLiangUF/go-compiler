@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"fmt"
 	"regexp"
 )
 
@@ -20,7 +19,6 @@ func parseNum(t []string, c *int) *Num {
 	num = new(Num)
 	num.Val = consume(t, c)
 	num.Type = "Num"
-	fmt.Println(num)
 	return num
 }
 

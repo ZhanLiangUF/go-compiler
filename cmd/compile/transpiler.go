@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 )
 
@@ -14,9 +13,9 @@ var ostMap = map[string]string{
 
 // takes in AST and produce go code
 // TO DO fix function parameters to match parserl
-func transpile(ast *Node, ast2 *Num) {
+func transpile(ast *Node, ast2 *Num) string {
 	a := transpileNode(ast, ast2)
-	fmt.Println(a)
+	return a
 }
 
 func transpileNode(ast *Node, ast2 *Num) string {
