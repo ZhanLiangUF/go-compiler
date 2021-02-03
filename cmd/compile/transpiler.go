@@ -29,7 +29,7 @@ func transpileNode(ast *Node, ast2 *Num) string {
 func transpileOp(ast *Node) string {
 	var arr []string
 	for _, v := range ast.Exp {
-		if ast.Type == "Node" {
+		if v.getType() == "Op" {
 			v := v.(*Node)
 			arr = append(arr, transpileNode(v, nil))
 		} else {
@@ -37,7 +37,7 @@ func transpileOp(ast *Node) string {
 			arr = append(arr, transpileNode(nil, v))
 		}
 	}
-	s := strings.Join(arr, ostMap[ast.Val])
+	s := "(" + strings.Join(arr, ostMap[ast.Val]) + ")"
 	return s
 }
 

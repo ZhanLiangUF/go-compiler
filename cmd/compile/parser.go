@@ -26,7 +26,7 @@ func parseOp(t []string, c *int) *Node {
 	var node *Node
 	node = new(Node)
 
-	var exp []interface{}
+	var exp []ast
 
 	node.Val = consume(t, c)
 	node.Type = "Op"
