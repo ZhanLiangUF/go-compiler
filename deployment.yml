@@ -3,3 +3,13 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
     name: compiler-web-app
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: compiler-web-app
+    template:
+        metadata:
+            labels:
+                app: compiler-web-app
+        
