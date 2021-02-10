@@ -2,14 +2,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: compiler-web-app
+    name: compiler-web-app # unique key of the deployment instance
 spec:
     replicas: 3
     selector:
-        matchLabels:
+        matchLabels: # labels are used as mappings in the system
             app: compiler-web-app
     template:
         metadata:
             labels:
                 app: compiler-web-app
-        
+        spec: # spec for container must have at least one
+            containers:
+            - name: compiler-web-app # dash used to list
+              image: zhanlianguf/compile-web-app:go_1 
