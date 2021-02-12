@@ -18,5 +18,12 @@ spec:
               image: zhanlianguf/compile-web-app:go_1 
               imagePullPolicy: IfNotPresent
               ports:
-              - containerPort: 3000 # number of port to be exposed on the pod's IP address
-            #   livenessProbe: #Under what circumstance is it appropriate to restart the pod
+                - containerPort: 3000 # number of port to be exposed on the pod's IP address
+              livenessProbe: #Under what circumstance is it appropriate to restart the pod
+                httpGet:
+                    path: /health
+                    port: 3000
+                    scheme: HTTP
+                initialDelaySeconds: 5 # number of seconds after the container has started before liveness probes are initiated
+                periodSeconds: 30 # how often in seconds to perform the probe
+                timeoutSeconds: 1 # number of seconds after which the probe times out.

@@ -19,6 +19,11 @@ func compile(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, returnString)
 }
 
+func healthHandler(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+}
+
 func setupRoutes() {
 	http.HandleFunc("/", compile)
+	http.HandleFunc("/health", healthHandler)
 }
