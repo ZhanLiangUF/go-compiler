@@ -23,7 +23,12 @@ func healthHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
+func readinessHandler(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+}
+
 func setupRoutes() {
 	http.HandleFunc("/", compile)
 	http.HandleFunc("/health", healthHandler)
+	http.HandleFunc("/readiness", readinessHandler)	
 }
